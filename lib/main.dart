@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:sensors/sensors.dart';
@@ -64,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   void _getSpeed(){
-    //read from sensor
+     //read from sensor
      int rnd=((_event.y).round()).abs() * 10;
      //limit speed from 10 to 30
      if(rnd > 30) _speed = 30;
@@ -120,11 +119,13 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-//      appBar: AppBar(
-//        // Here we take the value from the MyHomePage object that was created by
-//        // the App.build method, and use it to set our appbar title.
-//        title: Text(widget.title),
-//      ),
+      appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+        //backgroundColor: Color(0xFFFF1744),
+        backgroundColor:Colors.greenAccent,
+      ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
