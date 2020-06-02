@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -107,14 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
         //backgroundColor: Color(0xFFFF1744),
         backgroundColor:Colors.greenAccent,
       ),
-=======
-        return Scaffold(
-//      appBar: AppBar(
-//        // Here we take the value from the MyHomePage object that was created by
-//        // the App.build method, and use it to set our appbar title.
-//        title: Text(widget.title),
-//      ),
->>>>>>> f5447bae5025333e5e3286a5e92bb850b853e6e1
+
+
+
       body: Center(
        child:Column(
           mainAxisAlignment: MainAxisAlignment.center,
