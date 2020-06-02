@@ -64,14 +64,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   void _getSpeed(){
-
+    //read from sensor
      int rnd=((_event.y).round()).abs() * 10;
+     //limit speed from 10 to 30
      if(rnd > 30) _speed = 30;
      else if(rnd < 10) _speed = 10;
      else _speed = rnd;
 
   }
 
+  //increment _from10to30 till it reaches 30
   void _incrementfrom10to30(){
 
     if(reached30 == 0){
@@ -83,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  //increment _from30to10 till it reaches 10
   void _incrementfrom30to10(){
     if(reached30== 1 ){
       _from30to10++;
