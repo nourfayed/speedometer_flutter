@@ -36,10 +36,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _from10to30 = 0;
   int _from30to10 = 0;
+  int _onScreen10to30=0;
+  int _onScreen30to10=0;
   int _speed = 0;
   int reached30 = 0;
  // AccelerometerEvent _event;
   double _curSpeed;
+  Random rndm = new Random();
 
 
   void _getSpeed()   {
@@ -47,21 +50,27 @@ class _MyHomePageState extends State<MyHomePage> {
     var geolocator = Geolocator().getPositionStream(LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10)).listen((position) {
       _curSpeed = position.speed; // get speed
     });
-    if(_curSpeed != null)
+    if(_curSpeed == null)
    {
-     _speed=(_curSpeed*3.6).round(); //to convert to km/hr
+     _speed = 0;
    }
-    print(_speed);
+   else {
+      _speed = (_curSpeed * 3.6).round(); //to convert to km/hr
+    }
+   //   _speed= rndm.nextInt(10);
+      print(_speed);
+
   }
 
   //increment _from10to30 till it reaches 30
   void _incrementfrom10to30(){
 
     if(reached30 == 0){
-      _from10to30++;
-      if( _speed >= 30 ){
+      if(_speed >= 10 || _from30to10 > 0) _from10to30++; //once 10 km/hr or more is hit keep incrementing
+      if( _speed >= 30 ){   //if 30 km/hr is hit stop incrementing and show count on screen
         reached30=1;
-        _from10to30=0;
+        _onScreen10to30 =_from10to30;
+        _from10to30 = 0;
       }
     }
   }
@@ -69,9 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
   //increment _from30to10 till it reaches 10
   void _incrementfrom30to10(){
     if(reached30 == 1 ){
-      _from30to10++;
-      if(_speed<=10){
+      if(_speed <= 30 || _from30to10 > 0 )_from30to10++; //start incrementing the counter when the speed hits 30 km/hr or less
+      if(_speed<=10){  //if it reaches 10 km/hr stop incrementing and show it on screen
         reached30=0;
+        _onScreen30to10 =_from30to10;
         _from30to10=0;
       }
     }
@@ -155,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: EdgeInsets.fromLTRB(0,0,0,20),
               child:Text(
-                '$_from10to30',
+                '$_onScreen10to30',
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle( fontSize: 50,color: Colors.greenAccent),
@@ -184,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: EdgeInsets.fromLTRB(0,0,0,20),
               child:Text(
-                '$_from30to10',
+                '$_onScreen30to10',
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle( fontSize: 50,color: Colors.greenAccent),
