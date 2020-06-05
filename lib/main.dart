@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -39,14 +38,14 @@ class _MyHomePageState extends State<MyHomePage> {
   int _from30to10 = 0;
   int _speed = 0;
   int reached30 = 0;
-  AccelerometerEvent _event;
+ // AccelerometerEvent _event;
   double _curSpeed;
 
 
   void _getSpeed()   {
 
     var geolocator = Geolocator().getPositionStream(LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10)).listen((position) {
-      _curSpeed = position.speed; // this is your speed
+      _curSpeed = position.speed; // get speed
     });
     if(_curSpeed != null)
    {
